@@ -1,5 +1,6 @@
 #ifndef _FCHLIB_STRING_H_
 #define _FCHLIB_STRING_H_
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -46,19 +47,22 @@ typedef struct StringArray{
 	char** strings;
 }StringArray;
 
-StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);
-StringArray* fchlib_str_array_delete(StringArray* str_array);
-
 int fchlib_str_find(const char* str,const char* search);
 int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
+
 bool fchlib_str_contains(const char* str,const char* search);
+bool fchlib_str_end_with(const char* str,const char* end);
+bool fchlib_str_start_with(const char* str,const char* start);
+
 char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
-char* fchlib_str_to_upper(char* str);
-char* fchlib_str_to_lower(char* str);
-char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
 char* fchlib_str_repeat(char* str,int maxrepeat);
+char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
 char* fchlib_str_reverse(char* str);
+char* fchlib_str_to_lower(char* str);
+char* fchlib_str_to_upper(char* str);
 
 size_t fchlib_str_count(const char* str,const char* search);
-size_t fchlib_str_character_distance(const char* start,const char* end);
+
+StringArray* fchlib_str_array_delete(StringArray* str_array);
+StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);
 #endif

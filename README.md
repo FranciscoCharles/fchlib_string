@@ -1,43 +1,30 @@
 ![TESTE](name.png)
  
 Bem vindo ao README da **fchlib_string**.  
+
+# VERSION
+
+1.0.08112020
  
 # DESCRIÇÃO
  
 A **fchlib_string** é uma biblioteca escrita em C que implementa algumas
 funções básicas para manipulação de strings. Ela é composta pelas seguintes funções:
  
-- [**fchlib_str_character_distance**](#fchlib_str_character_distance)
 - [**fchlib_str_contains**](#fchlib_str_contains)
 - [**fchlib_str_count**](#fchlib_str_count)
+- [**fchlib_str_end_with**](#fchlib_str_end_with)
 - [**fchlib_str_equals**](#fchlib_str_equals)
 - [**fchlib_str_find**](#fchlib_str_find)
-- [**fchlib_str_to_lower**](#fchlib_str_to_lower)
-- [**fchlib_str_to_upper**](#fchlib_str_to_upper)
 - [**fchlib_str_remove**](#fchlib_str_remove)
 - [**fchlib_str_repeat**](#fchlib_str_repeat)
 - [**fchlib_str_replace**](#fchlib_str_replace)
 - [**fchlib_str_reverse**](#fchlib_str_reverse)
 - [**fchlib_str_split**](#fchlib_str_split)
+- [**fchlib_str_start_with**](#fchlib_str_start_with)
+- [**fchlib_str_to_lower**](#fchlib_str_to_lower)
+- [**fchlib_str_to_upper**](#fchlib_str_to_upper)
 - [**fchlib_str_array_delete**](#fchlib_str_array_delete)
-  
-# **<a name=fchlib_str_character_distance>fchlib_str_character_distance</a>**
-
-Esta função retorna a distancia entre dois caracteres pertencentes a uma mesma string.
-
-- ## prototipo da função :  
-  
-_size_t fchlib_str_character_distance(const char* start,const char* end);_
-  
-- ## parametros :
-  - start (const char*) : endereço do caractere inicial.
-  - end (const char*) : endereço do caractere final.
-
-- ## retorno:
-  - distance (size_t) : retorna a distancia entre 2 caracteres em uma string.
-
-- ## nota:
-  Caso **start** ou **end** não facam parte da mesma string essa função pode gerar comportamento inesperado.
 
 # **<a name=fchlib_str_contains>fchlib_str_contains</a>**
 
@@ -68,6 +55,21 @@ Esta função retorna a quantidade de ocorrências de uma string em outra string
 - ## retorno:
   - occurences (size_t) : retorna o número de ocorrencias de **search** em **str**.
 
+# **<a name=fchlib_str_end_with>fchlib_str_end_with</a>**
+
+Esta função verifica se um string termina com uma determinda string.
+
+- ## prototipo da função :  
+  
+_bool fchlib_str_end_with(const char* str,const char* end);_
+  
+- ## parametros :
+  - str (const char*) : string de origem.
+  - end (const char*) : string a ser verificada no final de **str**.
+
+- ## retorno:
+  - (bool) : retorna se **str** termina com **end**.
+
 # **<a name=fchlib_str_equals>fchlib_str_equals</a>**
 Esta função verifica se duas strings são iguais.
 
@@ -83,7 +85,6 @@ Esta função verifica se duas strings são iguais.
 - ## retorno:
   - (int) : -1 se **s1** é menor que **s2**. 0 se forem iguais e 1 se **s1** for maior que **s2**.
 
-
 # **<a name=fchlib_str_find>fchlib_str_find</a>**
 Esta função realiza a busca por uma string.
 
@@ -97,32 +98,6 @@ Esta função realiza a busca por uma string.
 
 - ## retorno:
   - (int) : retorna o index da primeira ocorrencia da string **search** ou -1 caso não seja encontrada.
-
-# **<a name=fchlib_str_to_lower>fchlib_str_to_lower</a>**
-Esta função converte uma string para minusculas.
-
-- ## prototipo da função :  
-  
-  _char* fchlib_str_to_lower(char* str);_
-
-- ## parametros :
-  - str (char*) : string à ser convertida.
-
-- ## retorno:
-  - (char*) : retorna a mesma string convertida para minusculas.
-
-# **<a name=fchlib_str_to_upper>fchlib_str_to_upper</a>**
-Esta função converte uma string para maiusculas.
-
-- ## prototipo da função :  
-
-  _char* fchlib_str_to_upper(char* str);_
-
-- ## parametros :
-  - str (char*) : string à ser convertida.
-
-- ## retorno:
-  - (char*) : retorna a mesma string convertida para maiusculas.
 
 # **<a name=fchlib_str_remove>fchlib_str_remove</a>**
 Esta função remove uma substring de uma string.
@@ -155,7 +130,6 @@ Esta função repete uma string.
 
 - ## nota:
   **str** deve possuir espaço suficiente para todas as repetições, caso contrario pode apresentar comportamento inesperado.
-
 
 # **<a name=fchlib_str_replace>fchlib_str_replace</a>**
 Esta função que realiza a substituição de uma substring por outra.
@@ -203,6 +177,47 @@ Esta função quebra um string em partes.
 
 - ## retorno:
   - (StringArray*) : retorna um **StringArray*** contendo todas as quebras.
+
+# **<a name=fchlib_str_start_with>fchlib_str_start_with</a>**
+
+Esta função verifica se um string começa com uma determinda string.
+
+- ## prototipo da função :  
+  
+_bool fchlib_str_start_with(const char* str,const char* start);_
+  
+- ## parametros :
+  - str (const char*) : string de origem.
+  - start (const char*) : string a ser verificada no começo de **str**.
+
+- ## retorno:
+  - (bool) : retorna se **str** começa com **start**.
+
+# **<a name=fchlib_str_to_lower>fchlib_str_to_lower</a>**
+Esta função converte uma string para minusculas.
+
+- ## prototipo da função :  
+  
+  _char* fchlib_str_to_lower(char* str);_
+
+- ## parametros :
+  - str (char*) : string à ser convertida.
+
+- ## retorno:
+  - (char*) : retorna a mesma string convertida para minusculas.
+
+# **<a name=fchlib_str_to_upper>fchlib_str_to_upper</a>**
+Esta função converte uma string para maiusculas.
+
+- ## prototipo da função :  
+
+  _char* fchlib_str_to_upper(char* str);_
+
+- ## parametros :
+  - str (char*) : string à ser convertida.
+
+- ## retorno:
+  - (char*) : retorna a mesma string convertida para maiusculas.
 
 # **<a name=fchlib_str_array_delete>fchlib_str_array_delete</a>**
 Esta função libera a memoria alocado por um **StringArray***.
