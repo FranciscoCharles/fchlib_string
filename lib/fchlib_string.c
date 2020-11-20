@@ -1,4 +1,26 @@
 #include "fchlib_string.h"
+bool fchlib_str_contains(const char* self,const char* search) {
+    return strstr(self,search) != (char*)NULL;
+}
+size_t fchlib_str_count(const char* str,const char* search) {
+    size_t len = strlen(search);
+    size_t occurrences = 0;
+    char* inter = strstr(str,search);
+    if (strlen(search)>0) {
+        while (inter != (char*)NULL) {
+            ++occurrences;
+            inter = strstr(inter+len,search);
+        }
+    }
+    return occurrences;
+}
+bool fchlib_str_end_with(const char* str,const char* end) {
+    int find = fchlib_str_find(str,end);
+    if(find>-1) {
+        return (unsigned)fchlib_str_find(str,end)==(strlen(str)-strlen(end));
+    }
+    return false;
+}
 int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case) {
     if (ignore_case) {
         char* tmp1 = (char*)calloc(strlen(s1)+1,1);
@@ -20,31 +42,6 @@ int fchlib_str_find(const char* str,const char* search) {
         return (int)(index-str);
     }
     return -1;
-}
-size_t fchlib_str_count(const char* str,const char* search) {
-    size_t len = strlen(search);
-    size_t occurrences = 0;
-    char* inter = strstr(str,search);
-    if (strlen(search)>0) {
-        while (inter != (char*)NULL) {
-            ++occurrences;
-            inter = strstr(inter+len,search);
-        }
-    }
-    return occurrences;
-}
-bool fchlib_str_contains(const char* self,const char* search) {
-    return strstr(self,search) != (char*)NULL;
-}
-bool fchlib_str_start_with(const char* str,const char* start) {
-    return fchlib_str_find(str,start)==0;
-}
-bool fchlib_str_end_with(const char* str,const char* end) {
-    int find = fchlib_str_find(str,end);
-    if(find>-1) {
-        return (unsigned)fchlib_str_find(str,end)==(strlen(str)-strlen(end));
-    }
-    return false;
 }
 char* fchlib_str_remove(char* str,const char* str_rm, size_t maxremove) {
     unsigned len_rm = strlen(str_rm);
@@ -109,6 +106,32 @@ char* fchlib_str_reverse(char* str) {
     }
     return str;
 }
+StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit) {
+    size_t len_sep = strlen(sep);
+    size_t str_size = 0;
+    StringArray* str_array = (StringArray*)calloc(1,sizeof(StringArray*));
+    str_array->strings = (char**)calloc(fchlib_str_count(str,sep)+1,sizeof(char*));
+    char* inter = strstr(str,sep);
+    char* tmp = str;
+    if (maxsplit==0) {
+        maxsplit = fchlib_str_count(str,sep);
+    }
+    while (inter != (char*)NULL && maxsplit-->0) {
+        str_size = inter-tmp;
+        str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
+        strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
+        tmp = inter+len_sep;
+        inter = strstr(inter+len_sep,sep);
+    }
+    str_size = &str[strlen(str)-1]-tmp;
+    str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
+    strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
+    inter = (char*)NULL;
+    return str_array;
+}
+bool fchlib_str_start_with(const char* str,const char* start) {
+    return fchlib_str_find(str,start)==0;
+}
 char* fchlib_str_to_lower(char* str) {
     char* inter = NULL;
     for (inter = str; *inter ; inter++) {
@@ -134,28 +157,3 @@ StringArray* fchlib_str_array_delete(StringArray* str_array) {
     str_array = (StringArray*)NULL;
     return (StringArray*)NULL;
 }
-StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit) {
-    size_t len_sep = strlen(sep);
-    size_t str_size = 0;
-    StringArray* str_array = (StringArray*)calloc(1,sizeof(StringArray*));
-    str_array->strings = (char**)calloc(fchlib_str_count(str,sep)+1,sizeof(char*));
-    char* inter = strstr(str,sep);
-    char* tmp = str;
-    if (maxsplit==0) {
-        maxsplit = fchlib_str_count(str,sep);
-    }
-    while (inter != (char*)NULL && maxsplit-->0) {
-        str_size = inter-tmp;
-        str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
-        strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
-        tmp = inter+len_sep;
-        inter = strstr(inter+len_sep,sep);
-    }
-    str_size = &str[strlen(str)-1]-tmp;
-    str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
-    strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
-    inter = (char*)NULL;
-    return str_array;
-}
-
-
