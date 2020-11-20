@@ -30,11 +30,11 @@ Esta função retorna a distancia entre dois caracteres pertencentes a uma mesma
 _size_t fchlib_str_character_distance(const char* start,const char* end);_
   
 - ## parametros :
-    -start \( 'const char\*' \) : endereço do caractere inicial.
-    -end (const char*) : endereço do caractere final.
+  - start \( 'const char\*' \) : endereço do caractere inicial.
+  - end (const char*) : endereço do caractere final.
 
 - ## retorno:
-  -distance (size_t) : retorna a distancia entre 2 caracteres em uma string.
+  - distance (size_t) : retorna a distancia entre 2 caracteres em uma string.
 
 - ## nota:
   Caso 'start' ou 'end' não facam parte da mesma string essa função pode gerar comportamento inesperado.
