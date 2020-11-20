@@ -26,9 +26,7 @@ funções bsicas para manipulação de strings. Ela é composta pelas seguintes 
 Esta função retorna a distancia entre dois caracteres pertencentes a uma mesma string.
 
 - ## prototipo da função :  
-  '''C
-size_t fchlib_str_character_distance(const char* start,const char* end);
-'''
+  '''C size_t fchlib_str_character_distance(const char* start,const char* end);'''
 - ## parametros :
  start (const char*) : endereço do caractere inicial.
  end (const char*) : endereço do caractere final.
