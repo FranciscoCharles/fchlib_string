@@ -27,9 +27,8 @@ Esta função retorna a distancia entre dois caracteres pertencentes a uma mesma
 
 - ## prototipo da função :  
   
-'''javascript
-size_t fchlib_str_character_distance(const char* start,const char* end);
-'''
+_size_t fchlib_str_character_distance(const char* start,const char* end);_
+
   
 - ## parametros :
  start \( 'const char\*' \) : endereço do caractere inicial.
@@ -46,9 +45,9 @@ Caso 'start' ou 'end' não facam parte da mesma string essa função pode gerar 
 Esta função verifica se uma string está contida dentro de outra.
 
 - ## prototipo da função :
- '''C
+  
 bool fchlib_str_contains(const char* str,const char* search);
-'''
+
 - ## parametros :
  - str ('const char*') : string de origem.
  - search ('const char*') : string para ser verificada se pertence a 'str'.
@@ -60,9 +59,9 @@ bool fchlib_str_contains(const char* str,const char* search);
 Esta função retorna a quantidade de ocorrências de uma string em outra string.
 
 - ## prototipo da função :  
-  '''C
+   
 size_t fchlib_str_count(const char* str,const char* search);
-'''   
+   
 - ## parametros :
  - str ('const char*') : string de origem.
  - search ('const char*') : string a ser contada.
@@ -75,9 +74,9 @@ Esta função verifica se duas strings são iguais.
 
 - ## prototipo da função :  
 
-  '''C
+   
 int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
-'''
+
 
 - ## parametros :
   - s1 ('const char*') : primeira string.
@@ -93,9 +92,9 @@ Esta função realiza a busca por uma string.
 
 - ## prototipo da função :  
 
-  '''C
+   
 int fchlib_str_find(const char* str,const char* search);
-'''
+
 
 - ## parametros :
   - str ('const char*') : string de origem.
@@ -110,9 +109,9 @@ Esta função converte uma string para minusculas.
 
 - ## prototipo da função :  
 
-  '''C
+   
 char* fchlib_str_to_lower(char* str);
-'''
+
 
 - ## parametros :
   - str ('char*') : string à ser convertida.
@@ -125,9 +124,9 @@ Esta função converte uma string para maiusculas.
 
 - ## prototipo da função :  
 
-  '''C
+   
 char* fchlib_str_to_upper(char* str);
-'''
+
 
 - ## parametros :
   - str ('char*') : string à ser convertida.
@@ -139,9 +138,9 @@ char* fchlib_str_to_upper(char* str);
 Esta função remove uma substring de uma string.
 
 - ## prototipo da função :  
-  '''C
+   
 char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
-'''
+
 
 - ## parametros :
   - str ('char*') : string de origem.
@@ -156,9 +155,9 @@ Esta função repete uma string.
 
 - ## prototipo da função :  
 
-  '''C
+   
 char* fchlib_str_repeat(char* str,int maxrepeat);
-'''
+
 
 - ## parametros :
   - str ('char*') : string a ser repetida.
@@ -176,9 +175,9 @@ Esta função que realiza a substituição de uma substring por outra.
 
 - ## prototipo da função :  
 
-  '''C
+   
 char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
-'''
+
 
 - ## parametros :
   - str ('char*') : string de origem.
@@ -197,9 +196,9 @@ Esta função inverte uma string.
 
 - ## prototipo da função :  
 
-  '''C
+   
 char* fchlib_str_reverse(char* str);
-'''
+
 
 - ## parametros :
   - str ('char*') : string à ser invertida.
@@ -212,9 +211,9 @@ Esta função quebra um string em partes.
 
 - ## prototipo da função :  
 
-  '''C
+   
 StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);
-'''
+
 
 - ## parametros :
   - str ('char*') : string de origem.
@@ -229,9 +228,9 @@ Esta função libera a memoria alocado por um 'StringArray*'.
 
 - ## prototipo da função :  
 
-  '''C
+   
 StringArray* fchlib_str_array_delete(StringArray* str_array);
-'''
+
 
 - ## parametros :
   - str_array ('StringArray*') : string array a ser liberado.
