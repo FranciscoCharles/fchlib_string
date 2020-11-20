@@ -28,7 +28,6 @@ Esta função retorna a distancia entre dois caracteres pertencentes a uma mesma
 - ## prototipo da função :  
   
 _size_t fchlib_str_character_distance(const char* start,const char* end);_
-
   
 - ## parametros :
  start \( 'const char\*' \) : endereço do caractere inicial.
@@ -46,7 +45,7 @@ Esta função verifica se uma string está contida dentro de outra.
 
 - ## prototipo da função :
   
-bool fchlib_str_contains(const char* str,const char* search);
+_bool fchlib_str_contains(const char* str,const char* search);_
 
 - ## parametros :
  - str ('const char*') : string de origem.
@@ -60,7 +59,7 @@ Esta função retorna a quantidade de ocorrências de uma string em outra string
 
 - ## prototipo da função :  
    
-size_t fchlib_str_count(const char* str,const char* search);
+_size_t fchlib_str_count(const char* str,const char* search);_
    
 - ## parametros :
  - str ('const char*') : string de origem.
@@ -73,10 +72,8 @@ size_t fchlib_str_count(const char* str,const char* search);
 Esta função verifica se duas strings são iguais.
 
 - ## prototipo da função :  
-
    
-int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
-
+_int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);_
 
 - ## parametros :
   - s1 ('const char*') : primeira string.
@@ -91,10 +88,8 @@ int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
 Esta função realiza a busca por uma string.
 
 - ## prototipo da função :  
-
-   
-int fchlib_str_find(const char* str,const char* search);
-
+  
+_int fchlib_str_find(const char* str,const char* search);_
 
 - ## parametros :
   - str ('const char*') : string de origem.
@@ -108,10 +103,8 @@ int fchlib_str_find(const char* str,const char* search);
 Esta função converte uma string para minusculas.
 
 - ## prototipo da função :  
-
-   
-char* fchlib_str_to_lower(char* str);
-
+  
+_char* fchlib_str_to_lower(char* str);_
 
 - ## parametros :
   - str ('char*') : string à ser convertida.
@@ -124,9 +117,7 @@ Esta função converte uma string para maiusculas.
 
 - ## prototipo da função :  
 
-   
-char* fchlib_str_to_upper(char* str);
-
+_char* fchlib_str_to_upper(char* str);_
 
 - ## parametros :
   - str ('char*') : string à ser convertida.
@@ -139,8 +130,7 @@ Esta função remove uma substring de uma string.
 
 - ## prototipo da função :  
    
-char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
-
+_char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);_
 
 - ## parametros :
   - str ('char*') : string de origem.
@@ -155,9 +145,7 @@ Esta função repete uma string.
 
 - ## prototipo da função :  
 
-   
-char* fchlib_str_repeat(char* str,int maxrepeat);
-
+_char* fchlib_str_repeat(char* str,int maxrepeat);_
 
 - ## parametros :
   - str ('char*') : string a ser repetida.
@@ -175,9 +163,7 @@ Esta função que realiza a substituição de uma substring por outra.
 
 - ## prototipo da função :  
 
-   
-char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
-
+_char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);_
 
 - ## parametros :
   - str ('char*') : string de origem.
@@ -196,9 +182,7 @@ Esta função inverte uma string.
 
 - ## prototipo da função :  
 
-   
-char* fchlib_str_reverse(char* str);
-
+_char* fchlib_str_reverse(char* str);_
 
 - ## parametros :
   - str ('char*') : string à ser invertida.
@@ -210,10 +194,8 @@ char* fchlib_str_reverse(char* str);
 Esta função quebra um string em partes.
 
 - ## prototipo da função :  
-
    
-StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);
-
+_StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);_
 
 - ## parametros :
   - str ('char*') : string de origem.
@@ -229,7 +211,7 @@ Esta função libera a memoria alocado por um 'StringArray*'.
 - ## prototipo da função :  
 
    
-StringArray* fchlib_str_array_delete(StringArray* str_array);
+_StringArray* fchlib_str_array_delete(StringArray* str_array);_
 
 
 - ## parametros :
