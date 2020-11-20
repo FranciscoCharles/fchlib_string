@@ -28,6 +28,7 @@ Esta função retorna a distancia entre dois caracteres pertencentes a uma mesma
 - ## prototipo da função :  
   
 '''javascript
+
 size_t fchlib_str_character_distance(const char* start,const char* end);
 '''
   
