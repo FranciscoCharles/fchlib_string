@@ -28,7 +28,7 @@ Esta função retorna a distancia entre dois caracteres pertencentes a uma mesma
 - ## prototipo da função :  
   '''C size_t fchlib_str_character_distance(const char* start,const char* end);'''
 - ## parametros :
- start (const char*) : endereço do caractere inicial.
+ start \( 'const char\*' \) : endereço do caractere inicial.
  end (const char*) : endereço do caractere final.
 
 - ## retorno:
