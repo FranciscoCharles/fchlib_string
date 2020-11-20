@@ -5,7 +5,7 @@ Bem vindo ao README da **fchlib_string**.
 # DESCRIÇÃO
  
 A **fchlib_string** é uma biblioteca escrita em C que implementa algumas
-funções bsicas para manipulação de strings. Ela é composta pelas seguintes funções:
+funções básicas para manipulação de strings. Ela é composta pelas seguintes funções:
  
 - [**fchlib_str_character_distance**](#fchlib_str_character_distance)
 - [**fchlib_str_contains**](#fchlib_str_contains)
