@@ -32,7 +32,9 @@ Esta função verifica se uma string está contida dentro de outra.
 
 - ## prototipo da função :
   
-  _bool fchlib_str_contains(const char* str,const char* search);_
+  `` `c
+	bool fchlib_str_contains(const char* str,const char* search);_
+  `` `
 
 - ## parametros :
   - str (const char*) : string de origem.
