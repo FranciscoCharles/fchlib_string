@@ -139,9 +139,8 @@ char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
   - maxremove (size_t) : quantidade de remoções. use 0 para remover todas as ocorrencias de **str_rm**.
 
 - ## retorno:
-  - (char) : retorna uma nova string alocada com a **str_rm** removida.
-- ## nota:
-  esta função retorna NULL caso uma das variaveis **str** e **str_rm sejam NULL.
+  - (char) : retorna uma nova string alocada com a **str_rm** removida, 
+caso uma das variaveis **str** e **str_rm** sejam NULL esta função retorna NULL.
 
 # **<a name=fchlib_str_repeat>fchlib_str_repeat</a>**
 Esta função repete uma string.
@@ -178,10 +177,8 @@ char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t
   - maxreplace (size_t) : quantidade de substituições em **str**. use 0 para realizar todas as substituições possiveis.
 
 - ## retorno:
-  - (char*) : retorna a uma nova string alocada com as substituções.
-
-- ## nota:
-  **str** deve possuir espaço suficiente para todas as substituições, caso contrario pode apresentar comportamento inesperado.
+  - (char*) : retorna a uma nova string alocada com as substituções. 
+caso uma das variaveis **str**,**str_rm** e **str_new** sejam NULL esta função retorna NULL.
 
 # **<a name=fchlib_str_reverse>fchlib_str_reverse</a>**
 Esta função inverte uma string.
