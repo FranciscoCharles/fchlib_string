@@ -21,7 +21,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- 
+
 */
 bool fchlib_str_contains(const char* str,const char* search) {
     return strstr(str,search) != (char*)NULL;
@@ -67,18 +67,34 @@ int fchlib_str_find(const char* str,const char* search) {
     }
     return -1;
 }
+char* fchlib_str_free(char* str) {
+    if(str!=NULL) {
+        free(str);
+    }
+    return NULL;
+}
 char* fchlib_str_remove(char* str,const char* str_rm, size_t maxremove) {
-    unsigned len_rm = strlen(str_rm);
-    char* inter = strstr(str,str_rm);
+    size_t len_rm = 0;
+    char* inter = 0;
+	char* tmp = str;
+    char* new_string = NULL;
+    if((str==NULL) || (str_rm==NULL) || (strlen(str)==0) || (strlen(str_rm)==0)) {
+        return (char*)NULL;
+    }
+    len_rm = strlen(str_rm);
+    inter = strstr(str,str_rm);
     if (maxremove==0) {
         maxremove = fchlib_str_count(str,str_rm)+1;
     }
+    new_string = (char*)calloc(strlen(str)-len_rm*maxremove+1,1);
     while (inter != (char*)NULL && maxremove-->0) {
-        strcpy(inter,inter+len_rm);
-        inter = strstr(inter,str_rm);
+        strncat(new_string,tmp,(unsigned)(inter-tmp));
+        tmp = inter+len_rm;
+        inter = strstr(inter+len_rm,str_rm);
     }
     inter = (char*)NULL;
-    return str;
+    tmp = (char*)NULL;
+    return new_string;
 }
 char* fchlib_str_repeat(char* str,int maxrepeat) {
     char* tmp = (char*)calloc(strlen(str)+1,1);
@@ -93,31 +109,33 @@ char* fchlib_str_repeat(char* str,int maxrepeat) {
     return str;
 }
 char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace) {
-    size_t len_rm = strlen(str_rm);
+    size_t len_rm = 0;
     size_t size_new = 0;
     char* start = str;
-    char* _new = (char*)NULL;
-    char* inter = strstr(str,str_rm);
-    if ((inter != (char*)NULL) && (strlen(str_rm)!=0)) {
+    char* new_string = NULL;
+    char* inter = NULL;
+    if((str==NULL) || (str==NULL) || (str_new==NULL) || (strlen(str)==0) || (strlen(str_rm)==0) || (strlen(str_new)==0)) {
+        return NULL;
+    }
+    len_rm = strlen(str_rm);
+    inter = strstr(str,str_rm);
+    if (inter != (char*)NULL) {
         size_new = strlen(str)+fchlib_str_count(str,str_rm)*(strlen(str_new)-strlen(str_rm))+1;
-        _new = (char*)calloc(size_new,1);
+        new_string = (char*)calloc(size_new,1);
         if (maxreplace==0) {
             maxreplace = fchlib_str_count(str,str_rm)+1;
         }
-        while (inter != (char*)NULL && maxreplace-->0) {
-			strncat(_new,start,(unsigned)(inter-start));
-            strcat(_new,str_new);
+        while (inter != NULL && maxreplace-->0) {
+            strncat(new_string,start,(unsigned)(inter-start));
+            strcat(new_string,str_new);
             start = inter+len_rm;
             inter = strstr(start,str_rm);
         }
         if (*start!='\0') {
-            strcat(_new,start);
+            strcat(new_string,start);
         }
-        strcpy(str,_new);
-        free(_new);
-        _new = (char*)NULL;
     }
-    return str;
+    return new_string;
 }
 char* fchlib_str_reverse(char* str) {
     unsigned start = 0;

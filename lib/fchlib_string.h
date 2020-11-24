@@ -54,6 +54,7 @@ bool fchlib_str_contains(const char* str,const char* search);
 bool fchlib_str_ends_with(const char* str,const char* end);
 bool fchlib_str_start_with(const char* str,const char* start);
 
+char* fchlib_str_free(char* str);
 char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
 char* fchlib_str_repeat(char* str,int maxrepeat);
 char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
