@@ -38,8 +38,9 @@ bool fchlib_str_contains(const char* str,const char* search);
 
 - ## parametros :
   - ```c
-str (const char*)
-``` : string de origem.
+    str (const char*)
+    ```
+    : string de origem.
   - search (const char*) : string para ser verificada se pertence a **str**.
  
 - ## retorno:
