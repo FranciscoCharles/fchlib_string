@@ -37,10 +37,7 @@ bool fchlib_str_contains(const char* str,const char* search);
 ```
 
 - ## parametros :
-  - ```c
-    str (const char*)
-    ```
-    : string de origem.
+  - str (const char*) : string de origem.
   - search (const char*) : string para ser verificada se pertence a **str**.
  
 - ## retorno:
@@ -50,8 +47,10 @@ bool fchlib_str_contains(const char* str,const char* search);
 Esta função retorna a quantidade de ocorrências de uma string em outra string.
 
 - ## prototipo da função :  
-   
-  _size_t fchlib_str_count(const char* str,const char* search);_
+
+```c
+size_t fchlib_str_count(const char* str,const char* search);
+```
    
 - ## parametros :
   - str (const char*) : string de origem.
@@ -66,7 +65,9 @@ Esta função verifica se um string termina com uma determinda string.
 
 - ## prototipo da função :  
   
-_bool fchlib_str_end_with(const char* str,const char* end);_
+```c
+bool fchlib_str_end_with(const char* str,const char* end);
+```
   
 - ## parametros :
   - str (const char*) : string de origem.
@@ -80,7 +81,9 @@ Esta função verifica se duas strings são iguais.
 
 - ## prototipo da função :  
    
-  _int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);_
+```c
+int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
+```
 
 - ## parametros :
   - s1 (const char*) : primeira string.
@@ -95,7 +98,9 @@ Esta função realiza a busca por uma string.
 
 - ## prototipo da função :  
   
-  _int fchlib_str_find(const char* str,const char* search);_
+```c
+int fchlib_str_find(const char* str,const char* search);
+```
 
 - ## parametros :
   - str (const char*) : string de origem.
@@ -109,7 +114,9 @@ Esta função remove uma substring de uma string.
 
 - ## prototipo da função :  
    
-  _char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);_
+```c
+char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
+```
 
 - ## parametros :
   - str (char*) : string de origem.
@@ -124,7 +131,9 @@ Esta função repete uma string.
 
 - ## prototipo da função :  
 
-  _char* fchlib_str_repeat(char* str,int maxrepeat);_
+```c
+char* fchlib_str_repeat(char* str,int maxrepeat);
+```
 
 - ## parametros :
   - str (char*) : string a ser repetida.
@@ -141,7 +150,9 @@ Esta função que realiza a substituição de uma substring por outra.
 
 - ## prototipo da função :  
 
-  _char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);_
+```c
+char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
+```
 
 - ## parametros :
   - str (char*) : string de origem.
@@ -160,7 +171,9 @@ Esta função inverte uma string.
 
 - ## prototipo da função :  
 
-  _char* fchlib_str_reverse(char* str);_
+```c
+char* fchlib_str_reverse(char* str);
+```
 
 - ## parametros :
   - str (char*) : string à ser invertida.
@@ -173,7 +186,9 @@ Esta função quebra um string em partes.
 
 - ## prototipo da função :  
    
-  _StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);_
+```c
+StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);
+```
 
 - ## parametros :
   - str (char*) : string de origem.
@@ -189,7 +204,9 @@ Esta função verifica se um string começa com uma determinda string.
 
 - ## prototipo da função :  
   
-_bool fchlib_str_start_with(const char* str,const char* start);_
+```c
+bool fchlib_str_start_with(const char* str,const char* start);
+```
   
 - ## parametros :
   - str (const char*) : string de origem.
@@ -203,7 +220,9 @@ Esta função converte uma string para minusculas.
 
 - ## prototipo da função :  
   
-  _char* fchlib_str_to_lower(char* str);_
+```c
+char* fchlib_str_to_lower(char* str);
+```
 
 - ## parametros :
   - str (char*) : string à ser convertida.
@@ -216,7 +235,9 @@ Esta função converte uma string para maiusculas.
 
 - ## prototipo da função :  
 
-  _char* fchlib_str_to_upper(char* str);_
+```c
+char* fchlib_str_to_upper(char* str);
+```
 
 - ## parametros :
   - str (char*) : string à ser convertida.
@@ -229,7 +250,9 @@ Esta função libera a memoria alocado por um **StringArray***.
 
 - ## prototipo da função :  
    
-_StringArray* fchlib_str_array_delete(StringArray* str_array);_
+```c
+StringArray* fchlib_str_array_delete(StringArray* str_array);
+```
 
 - ## parametros :
   - str_array (StringArray*) : string array a ser liberado.
