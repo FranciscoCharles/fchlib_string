@@ -111,14 +111,13 @@ int fchlib_str_find(const char* str,const char* search);
   - (int) : retorna o index da primeira ocorrencia da string **search** ou -1 caso não seja encontrada.
 
 # **<a name=fchlib_str_free>fchlib_str_free</a>**
-Esta função libera uma string.
+esta função libera a memoria alocada por uma string.
 
 - ## protótipo da função :  
   
 ```c
 char* fchlib_str_free(char* str);
 ```
-esta função libera a memoria alocada por uma string.
 - ## parâmetros :
   - str (const char*) : string a ser liberada.
 
