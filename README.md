@@ -31,10 +31,10 @@ funções básicas para manipulação de strings. Ela é composta pelas seguinte
 Esta função verifica se uma string está contida dentro de outra.
 
 - ## prototipo da função :
-  
-  `` `c  
-  bool fchlib_str_contains(const char* str,const char* search);
-  `` `
+
+```c  
+bool fchlib_str_contains(const char* str,const char* search);
+```
 
 - ## parametros :
   - str (const char*) : string de origem.
