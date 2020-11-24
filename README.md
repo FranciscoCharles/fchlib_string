@@ -16,6 +16,7 @@ funções básicas para manipulação de strings. Ela é composta pelas seguinte
 - [**fchlib_str_ends_with**](#fchlib_str_ends_with)
 - [**fchlib_str_equals**](#fchlib_str_equals)
 - [**fchlib_str_find**](#fchlib_str_find)
+- [**fchlib_str_free**](#fchlib_str_free)
 - [**fchlib_str_remove**](#fchlib_str_remove)
 - [**fchlib_str_repeat**](#fchlib_str_repeat)
 - [**fchlib_str_replace**](#fchlib_str_replace)
@@ -109,6 +110,21 @@ int fchlib_str_find(const char* str,const char* search);
 - ## retorno:
   - (int) : retorna o index da primeira ocorrencia da string **search** ou -1 caso não seja encontrada.
 
+# **<a name=fchlib_str_free>fchlib_str_free</a>**
+Esta função libera uma string.
+
+- ## protótipo da função :  
+  
+```c
+char* fchlib_str_free(char* str);
+```
+esta função libera a memoria alocada por uma string.
+- ## parâmetros :
+  - str (const char*) : string a ser liberada.
+
+- ## retorno:
+  - (NULL) : libera **str** caso esta não seja NULL e retorna NULL.
+
 # **<a name=fchlib_str_remove>fchlib_str_remove</a>**
 Esta função remove uma substring de uma string.
 
@@ -124,7 +140,9 @@ char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
   - maxremove (size_t) : quantidade de remoções. use 0 para remover todas as ocorrencias de **str_rm**.
 
 - ## retorno:
-  - (char) : retorna a mesma string com a **str_rm** removida.
+  - (char) : retorna uma nova string alocada com a **str_rm** removida.
+- ## nota:
+  esta função retorna NULL caso uma das variaveis **str** e **str_rm sejam NULL.
 
 # **<a name=fchlib_str_repeat>fchlib_str_repeat</a>**
 Esta função repete uma string.
@@ -161,7 +179,7 @@ char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t
   - maxreplace (size_t) : quantidade de substituições em **str**. use 0 para realizar todas as substituições possiveis.
 
 - ## retorno:
-  - (char*) : retorna a mesma string com as substituções.
+  - (char*) : retorna a uma nova string alocada com as substituções.
 
 - ## nota:
   **str** deve possuir espaço suficiente para todas as substituições, caso contrario pode apresentar comportamento inesperado.
