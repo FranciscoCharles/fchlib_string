@@ -8,7 +8,7 @@
 #include <ctype.h>
 
 /*
-fchlib_tring:
+fchlib_string:
 	uma biblioteca simples com algumas funcoes adicionais para manipulacao de
 strings em C.
 
@@ -51,7 +51,7 @@ int fchlib_str_find(const char* str,const char* search);
 int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
 
 bool fchlib_str_contains(const char* str,const char* search);
-bool fchlib_str_end_with(const char* str,const char* end);
+bool fchlib_str_ends_with(const char* str,const char* end);
 bool fchlib_str_start_with(const char* str,const char* start);
 
 char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);

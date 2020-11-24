@@ -13,7 +13,7 @@ funções básicas para manipulação de strings. Ela é composta pelas seguinte
  
 - [**fchlib_str_contains**](#fchlib_str_contains)
 - [**fchlib_str_count**](#fchlib_str_count)
-- [**fchlib_str_end_with**](#fchlib_str_end_with)
+- [**fchlib_str_ends_with**](#fchlib_str_ends_with)
 - [**fchlib_str_equals**](#fchlib_str_equals)
 - [**fchlib_str_find**](#fchlib_str_find)
 - [**fchlib_str_remove**](#fchlib_str_remove)
@@ -59,14 +59,14 @@ size_t fchlib_str_count(const char* str,const char* search);
 - ## retorno:
   - occurences (size_t) : retorna o número de ocorrencias de **search** em **str**.
 
-# **<a name=fchlib_str_end_with>fchlib_str_end_with</a>**
+# **<a name=fchlib_str_ends_with>fchlib_str_ends_with</a>**
 
 Esta função verifica se um string termina com uma determinda string.
 
 - ## protótipo da função :  
   
 ```c
-bool fchlib_str_end_with(const char* str,const char* end);
+bool fchlib_str_ends_with(const char* str,const char* end);
 ```
   
 - ## parâmetros :
