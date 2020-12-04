@@ -1,7 +1,5 @@
-![TESTE](name.png)
-
 <p align="center">
-  <img src="name.png">
+  <img src="name.png" width="100">
 </p>
   
 Bem vindo ao README da **fchlib_string**.  
