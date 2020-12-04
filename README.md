@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="name.png" width="100">
+  <img src="name.png" width="500">
 </p>
   
 Bem vindo ao README da **fchlib_string**.  
