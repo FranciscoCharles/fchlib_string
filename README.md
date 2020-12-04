@@ -92,7 +92,8 @@ int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
   - ignore_case (bool): flag para ignorar o caso.
 
 - ## retorno:
-  - (int) : -1 se **s1** é menor que **s2**. 0 se forem iguais e 1 se **s1** for maior que **s2**.
+  - (int) : -1 se **s1** é menor que **s2**. 0 se forem iguais e 1 se **s1** for maior que **s2**. caso **s1** 
+ou **s2** sejam NULL, esta função retorna -2.
 
 # **<a name=fchlib_str_find>fchlib_str_find</a>**
 Esta função realiza a busca por uma string.
@@ -148,7 +149,7 @@ Esta função repete uma string.
 - ## protótipo da função :  
 
 ```c
-char* fchlib_str_repeat(char* str,int maxrepeat);
+char* fchlib_str_repeat(char* str,size_t maxrepeat);
 ```
 
 - ## parâmetros :
@@ -156,10 +157,7 @@ char* fchlib_str_repeat(char* str,int maxrepeat);
   - maxrepeat (size_t) : quantidade de repetições de **str**.
 
 - ## retorno:
-  - (char*) : retorna a mesma string repetida.
-
-- ## nota:
-  **str** deve possuir espaço suficiente para todas as repetições, caso contrario pode apresentar comportamento inesperado.
+  - (char*) : retorna a uma nova string alocada com **str** repetida.
 
 # **<a name=fchlib_str_replace>fchlib_str_replace</a>**
 Esta função que realiza a substituição de uma substring por outra.
@@ -201,16 +199,18 @@ Esta função quebra um string em partes.
 - ## protótipo da função :  
    
 ```c
-StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);
+StringArray fchlib_str_split(char* str,const char* sep,size_t maxsplit);
 ```
 
 - ## parâmetros :
   - str (char*) : string de origem.
-  - sep (char*) : string de separação.
+  - sep (const char*) : string de separação.
   - maxsplit (size_t) : quantidade maxima de quebras. use 0 para realizar todas as quebras possiveis.
 
 - ## retorno:
-  - (StringArray*) : retorna um **StringArray*** contendo todas as quebras.
+  - (StringArray) : retorna um **StringArray** contendo todas as quebras.
+- ## nota:
+  Caso **str** ou **sep** sejam NULL ou string vazia esta função retorna NULL.
 
 # **<a name=fchlib_str_start_with>fchlib_str_start_with</a>**
 
@@ -260,16 +260,16 @@ char* fchlib_str_to_upper(char* str);
   - (char*) : retorna a mesma string convertida para maiusculas.
 
 # **<a name=fchlib_str_array_delete>fchlib_str_array_delete</a>**
-Esta função libera a memoria alocado por um **StringArray***.
+Esta função libera a memoria alocado por um **StringArray**.
 
 - ## protótipo da função :  
    
 ```c
-StringArray* fchlib_str_array_delete(StringArray* str_array);
+StringArray fchlib_str_array_delete(StringArray str_array);
 ```
 
 - ## parâmetros :
-  - str_array (StringArray*) : string array a ser liberado.
+  - str_array (StringArray) : string array a ser liberado.
 
 - ## retorno:
-  - (StringArray*) : retorna **NULL**.
+  - (StringArray) : retorna **NULL**.
