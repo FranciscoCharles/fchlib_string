@@ -1,5 +1,9 @@
 ![TESTE](name.png)
- 
+
+<p align="center">
+  <img src="name.png">
+</p>
+  
 Bem vindo ao README da **fchlib_string**.  
 
 # VERSION
