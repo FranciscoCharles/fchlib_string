@@ -44,7 +44,7 @@ bool fchlib_str_contains(const char* str,const char* search);
   - search (const char*) : string para ser verificada se pertence a **str**.
  
 - ## retorno:
-  - (bool): retorna se **search** pertence a **str**.
+  - (bool): retorna `true` se **search** é uma substring de **str**.
 
 # **<a name=fchlib_str_count>fchlib_str_count</a>**
 Esta função retorna a quantidade de ocorrências de uma string em outra string.

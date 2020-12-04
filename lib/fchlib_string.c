@@ -99,14 +99,14 @@ char* fchlib_str_remove(char* str,const char* str_rm, size_t maxremove) {
         tmp = inter+len_rm;
         inter = strstr(inter+len_rm,str_rm);
     }
-    if(inter!=NULL){
-		strcat(new_string,tmp);
-	}
+    if(inter!=NULL) {
+        strcat(new_string,tmp);
+    }
     inter = (char*)NULL;
     tmp = (char*)NULL;
-    if(strlen(new_string)==0){
-		strcpy(new_string,str);
-	}
+    if(strlen(new_string)==0) {
+        strcpy(new_string,str);
+    }
     return new_string;
 }
 char* fchlib_str_repeat(const char* str,size_t maxrepeat) {
@@ -179,22 +179,28 @@ StringArray fchlib_str_split(char* str,const char* sep,size_t maxsplit) {
     }
     len_sep = strlen(sep);
     str_array = (StringArray)calloc(1,sizeof(struct StringArray));
-    str_array->strings = (char**)calloc(fchlib_str_count(str,sep)+1,sizeof(char*));
-    inter = strstr(str,sep);
-    if (maxsplit==0) {
-        maxsplit = fchlib_str_count(str,sep);
+    if(str_array != NULL) {
+        str_array->strings = (char**)calloc(fchlib_str_count(str,sep)+1,sizeof(char*));
+        if(str_array->strings != NULL) {
+            inter = strstr(str,sep);
+            if (maxsplit==0) {
+                maxsplit = fchlib_str_count(str,sep);
+            }
+            while (inter != (char*)NULL && maxsplit-->0) {
+                str_size = inter-tmp;
+                str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
+                strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
+                tmp = inter+len_sep;
+                inter = strstr(tmp,sep);
+            }
+            str_size = &str[strlen(str)]-tmp;
+            str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
+            strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
+            inter = (char*)NULL;
+        } else {
+            str_array = fchlib_str_array_delete(str_array);
+        }
     }
-    while (inter != (char*)NULL && maxsplit-->0) {
-        str_size = inter-tmp;
-        str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
-        strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
-        tmp = inter+len_sep;
-        inter = strstr(tmp,sep);
-    }
-    str_size = &str[strlen(str)-1]-tmp;
-    str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
-    strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
-    inter = (char*)NULL;
     return str_array;
 }
 bool fchlib_str_start_with(const char* str,const char* start) {
