@@ -24,29 +24,34 @@ SOFTWARE.
 
 */
 bool fchlib_str_contains(const char* str,const char* search) {
-    return strstr(str,search) != (char*)NULL;
+    return (str!=NULL) && (search!=NULL) && strstr(str,search) != (char*)NULL;
 }
 size_t fchlib_str_count(const char* str,const char* search) {
-    size_t len = strlen(search);
     size_t occurrences = 0;
-    char* inter = strstr(str,search);
-    if (strlen(search)>0) {
-        while (inter != (char*)NULL) {
-            ++occurrences;
-            inter = strstr(inter+len,search);
+    if((str!=NULL) && (search!=NULL)) {
+        size_t len = strlen(search);
+        char* inter = strstr(str,search);
+        if (strlen(search)>0) {
+            while (inter != (char*)NULL) {
+                ++occurrences;
+                inter = strstr(inter+len,search);
+            }
         }
     }
     return occurrences;
 }
 bool fchlib_str_ends_with(const char* str,const char* end) {
-    int find = fchlib_str_find(str,end);
-    if(find>-1) {
-        return (unsigned)fchlib_str_find(str,end)==(strlen(str)-strlen(end));
+    if((str==NULL) || (end==NULL)) {
+        return false;
     }
-    return false;
+    size_t len_str = strlen(str);
+    size_t len_end = strlen(end);
+    return (len_str>=len_end) && strcmp(&str[len_str-len_end],end)==0;
 }
 int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case) {
-    if (ignore_case) {
+    if((s1==NULL) || (s2==NULL)) {
+        return -2;
+    } else if (ignore_case) {
         char* tmp1 = (char*)calloc(strlen(s1)+1,1);
         char* tmp2 = (char*)calloc(strlen(s2)+1,1);
         fchlib_str_to_upper(strcpy(tmp1,s1));
@@ -61,9 +66,11 @@ int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case) {
     return strcmp(s1,s2);
 }
 int fchlib_str_find(const char* str,const char* search) {
-    char* index = strstr(str,search);
-    if (index != (char*)NULL) {
-        return (int)(index-str);
+    if((str!=NULL) && (search!=NULL)) {
+        char* index = strstr(str,search);
+        if (index != (char*)NULL) {
+            return (int)(index-str);
+        }
     }
     return -1;
 }
@@ -76,7 +83,7 @@ char* fchlib_str_free(char* str) {
 char* fchlib_str_remove(char* str,const char* str_rm, size_t maxremove) {
     size_t len_rm = 0;
     char* inter = 0;
-	char* tmp = str;
+    char* tmp = str;
     char* new_string = NULL;
     if((str==NULL) || (str_rm==NULL) || (strlen(str)==0) || (strlen(str_rm)==0)) {
         return (char*)NULL;
@@ -92,29 +99,37 @@ char* fchlib_str_remove(char* str,const char* str_rm, size_t maxremove) {
         tmp = inter+len_rm;
         inter = strstr(inter+len_rm,str_rm);
     }
+    if(inter!=NULL){
+		strcat(new_string,tmp);
+	}
     inter = (char*)NULL;
     tmp = (char*)NULL;
+    if(strlen(new_string)==0){
+		strcpy(new_string,str);
+	}
     return new_string;
 }
-char* fchlib_str_repeat(char* str,int maxrepeat) {
-    char* tmp = (char*)calloc(strlen(str)+1,1);
-    if (tmp != NULL) {
-        strcpy(tmp,str);
-        for (; maxrepeat>1; --maxrepeat) {
-            strcat(str,tmp);
+char* fchlib_str_repeat(const char* str,size_t maxrepeat) {
+    char* tmp = NULL;
+    if((str!=NULL) && (maxrepeat>0)) {
+        tmp = (char*)calloc(maxrepeat*strlen(str)+1,1);
+        if (tmp != NULL) {
+            strcpy(tmp,str);
+            for (; maxrepeat>1; --maxrepeat) {
+                strcat(tmp,str);
+            }
         }
-        free(tmp);
-        tmp = (char*)NULL;
     }
-    return str;
+    return tmp;
 }
 char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace) {
+
     size_t len_rm = 0;
     size_t size_new = 0;
     char* start = str;
     char* new_string = NULL;
     char* inter = NULL;
-    if((str==NULL) || (str==NULL) || (str_new==NULL) || (strlen(str)==0) || (strlen(str_rm)==0) || (strlen(str_new)==0)) {
+    if((str==NULL) || (str_new==NULL) || (str_rm==NULL) || (strlen(str)==0) || (strlen(str_rm)==0)) {
         return NULL;
     }
     len_rm = strlen(str_rm);
@@ -134,27 +149,38 @@ char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t
         if (*start!='\0') {
             strcat(new_string,start);
         }
+    } else {
+        new_string = (char*)calloc(strlen(str)+1,1);
+        strcpy(new_string,str);
     }
     return new_string;
 }
 char* fchlib_str_reverse(char* str) {
-    unsigned start = 0;
-    unsigned end = strlen(str)-1;
-    char tmp = '\0';
-    for (; start<=end; ++start,--end) {
-        tmp = str[start];
-        str[start] = str[end];
-        str[end] = tmp;
+    if(str!=NULL) {
+        unsigned start = 0;
+        unsigned end = strlen(str)-1;
+        char tmp = '\0';
+        for (; start<=end; ++start,--end) {
+            tmp = str[start];
+            str[start] = str[end];
+            str[end] = tmp;
+        }
     }
     return str;
 }
-StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit) {
-    size_t len_sep = strlen(sep);
-    size_t str_size = 0;
-    StringArray* str_array = (StringArray*)calloc(1,sizeof(StringArray*));
-    str_array->strings = (char**)calloc(fchlib_str_count(str,sep)+1,sizeof(char*));
-    char* inter = strstr(str,sep);
+StringArray fchlib_str_split(char* str,const char* sep,size_t maxsplit) {
     char* tmp = str;
+    char* inter = NULL;
+    size_t len_sep = 0;
+    size_t str_size = 0;
+    StringArray str_array = NULL;
+    if((str==NULL) || (sep==NULL) || (strlen(str)==0) || (strlen(sep)==0)) {
+        return (StringArray)NULL;
+    }
+    len_sep = strlen(sep);
+    str_array = (StringArray)calloc(1,sizeof(struct StringArray));
+    str_array->strings = (char**)calloc(fchlib_str_count(str,sep)+1,sizeof(char*));
+    inter = strstr(str,sep);
     if (maxsplit==0) {
         maxsplit = fchlib_str_count(str,sep);
     }
@@ -163,7 +189,7 @@ StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit) {
         str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
         strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
         tmp = inter+len_sep;
-        inter = strstr(inter+len_sep,sep);
+        inter = strstr(tmp,sep);
     }
     str_size = &str[strlen(str)-1]-tmp;
     str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
@@ -172,30 +198,37 @@ StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit) {
     return str_array;
 }
 bool fchlib_str_start_with(const char* str,const char* start) {
+    if((str==NULL) || (start==NULL) || (strlen(str)!=0 && strlen(start)==0)) {
+        return false;
+    }
     return fchlib_str_find(str,start)==0;
 }
 char* fchlib_str_to_lower(char* str) {
-    char* inter = NULL;
-    for (inter = str; *inter ; inter++) {
-        *inter = (char)tolower(*inter);
+    if(str!=NULL) {
+        char* inter = NULL;
+        for (inter = str; *inter ; inter++) {
+            *inter = (char)tolower(*inter);
+        }
     }
     return str;
 }
 char* fchlib_str_to_upper(char* str) {
-    char* inter = NULL;
-    for (inter = str; *inter ; inter++) {
-        *inter = (char)toupper(*inter);
+    if(str!=NULL) {
+        char* inter = NULL;
+        for (inter = str; *inter ; inter++) {
+            *inter = (char)toupper(*inter);
+        }
     }
     return str;
 }
-StringArray* fchlib_str_array_delete(StringArray* str_array) {
-    --(str_array->_size);
-    while (str_array->_size>-1) {
-        free(str_array->strings[str_array->_size]);
-        str_array->strings[str_array->_size] = (char*)NULL;
-        --(str_array->_size);
+StringArray fchlib_str_array_delete(StringArray str_array) {
+    if(str_array!=NULL) {
+        while (--(str_array->_size)>-1) {
+            free(str_array->strings[str_array->_size]);
+            str_array->strings[str_array->_size] = (char*)NULL;
+        }
+        free(str_array);
+        str_array = (StringArray)NULL;
     }
-    free(str_array);
-    str_array = (StringArray*)NULL;
-    return (StringArray*)NULL;
+    return (StringArray)NULL;
 }

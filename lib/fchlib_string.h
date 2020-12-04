@@ -42,10 +42,11 @@ SOFTWARE.
  
 */
 
-typedef struct StringArray{
+typedef struct StringArray* StringArray;
+struct StringArray{
 	int _size;
 	char** strings;
-}StringArray;
+};
 
 int fchlib_str_find(const char* str,const char* search);
 int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
@@ -56,7 +57,7 @@ bool fchlib_str_start_with(const char* str,const char* start);
 
 char* fchlib_str_free(char* str);
 char* fchlib_str_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
-char* fchlib_str_repeat(char* str,int maxrepeat);
+char* fchlib_str_repeat(const char* str,size_t maxrepeat);
 char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
 char* fchlib_str_reverse(char* str);
 char* fchlib_str_to_lower(char* str);
@@ -64,6 +65,6 @@ char* fchlib_str_to_upper(char* str);
 
 size_t fchlib_str_count(const char* str,const char* search);
 
-StringArray* fchlib_str_array_delete(StringArray* str_array);
-StringArray* fchlib_str_split(char* str,const char* sep,size_t maxsplit);
+StringArray fchlib_str_array_delete(StringArray str_array);
+StringArray fchlib_str_split(char* str,const char* sep,size_t maxsplit);
 #endif
