@@ -95,7 +95,7 @@ int fchlib_str_equals(const char* s1,const char* s2,bool ignore_case);
 
 - ## retorno:
   - (int) : -1 se **s1** é menor que **s2**. 0 se forem iguais e 1 se **s1** for maior que **s2**. caso **s1** 
-ou **s2** sejam NULL, esta função retorna -2.
+ou **s2** sejam NULL, esta função retorna -2. Caso não seja possivel realizar alguma alocação interna esta função retorna -3.
 
 # **<a name=fchlib_str_find>fchlib_str_find</a>**
 Esta função realiza a busca por uma string.
@@ -143,7 +143,7 @@ char* fchlib_str_remove(char* str,const char* str_rm,size_t maxremove);
 
 - ## retorno:
   - (char) : retorna uma nova string alocada com a **str_rm** removida, 
-caso uma das variaveis **str** e **str_rm** sejam NULL esta função retorna NULL.
+caso uma das variaveis **str** e **str_rm** sejam NULL ou um nova string nao possa ser alocada esta função retorna NULL.
 
 # **<a name=fchlib_str_repeat>fchlib_str_repeat</a>**
 Esta função repete uma string.
@@ -212,7 +212,7 @@ StringArray fchlib_str_split(char* str,const char* sep,size_t maxsplit);
 - ## retorno:
   - (StringArray) : retorna um **StringArray** contendo todas as quebras.
 - ## nota:
-  Caso **str** ou **sep** sejam NULL ou string vazia esta função retorna NULL.
+  Caso **str** ou **sep** sejam NULL, string vazia ou não seja possivel alocar espaço para o StringArray e seus dados esta função retorna NULL.
 
 # **<a name=fchlib_str_start_with>fchlib_str_start_with</a>**
 
