@@ -22,6 +22,7 @@ funções básicas para manipulação de strings. Ela é composta pelas seguinte
 - [**string_equals**](#string_equals)
 - [**string_find**](#string_find)
 - [**string_free**](#string_free)
+- [**string_join**](#string_join)
 - [**string_remove**](#string_remove)
 - [**string_repeat**](#string_repeat)
 - [**string_replace**](#string_replace)
@@ -129,6 +130,22 @@ char* string_free(char* str);
 - ## retorno:
   - `(`NULL`)` : libera **str** caso esta não seja `NULL` e retorna `NULL`.
 
+# **<a name=string_join>string_join</a>**
+Esta função converte um `StringArray` em uma string.
+
+- ## protótipo da função :  
+   
+```c
+char* string_join(StringArray str_array,char* separator);
+```
+
+- ## parâmetros :
+  - str_array `(StringArray)` : `StringArray` de origem.
+  - separator `(const char*)` : string usada para separar a string resultante da concatenação.
+
+- ## retorno:
+  - `(char*)` : retorna uma nova string alocada com o resultado da concatenação ou `NULL` caso uma nova string nao possa ser alocada.
+
 # **<a name=string_remove>string_remove</a>**
 Esta função remove uma substring de uma string.
 
@@ -144,8 +161,8 @@ char* string_remove(char* str,const char* str_rm,size_t maxremove);
   - maxremove `(size_t)` : quantidade de remoções. use 0 para remover todas as ocorrencias de **str_rm**.
 
 - ## retorno:
-  - `(char)` : retorna uma nova string alocada com a **str_rm** removida, 
-caso uma das variaveis **str** e **str_rm** sejam `NULL` ou um nova string nao possa ser alocada esta função retorna `NULL`.
+  - `(char)` : retorna uma nova string alocada com a **str_rm** removida ou retorna `NULL` no
+caso de uma das variaveis **str** e **str_rm** sejam `NULL` ou uma nova string nao possa ser alocada.
 
 # **<a name=string_repeat>string_repeat</a>**
 Esta função repete uma string.
