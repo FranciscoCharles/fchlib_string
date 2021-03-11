@@ -279,7 +279,6 @@ char* string_join(StringArray str_array,char* separator) {
             }
             strcat(new_string,str_array->strings[size]);
         }
-
     }
     return new_string;
 }
