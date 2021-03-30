@@ -1,20 +1,26 @@
 <p align="center">
-  <img src="name.png" width="500">
+  <img src="logo.png" width="500" height="180">  
 </p>
-  
-Bem vindo ao README da **fchlib_string**.  
 
-# VERSION
-versão atual: <h3><b>1.0.11032021</b></h3>
-versões anteriores:
+<p align="center">
+  Welcome to the <b>README</b> of the <b>fchlib_string</b> library.
+</p>
 
-~~1.0.08112020~~
+# Version
+
+- current version:
+  <h5><b>1.0.11032021</b></h5>
+
+- previous versions:
+
+    ~~<h5>1.0.08112020<h5>~~
 
  
-# DESCRIÇÃO
- 
-A **fchlib_string** é uma biblioteca escrita em C que implementa algumas
-funções básicas para manipulação de strings. Ela é composta pelas seguintes funções:
+# Description  
+
+**fchlib_string** is a library written in C that implements some basic functions for manipulating strings. It consists of the following functions:
+
+# <a name=index>Table of contents</a>
  
 - [**string_contains**](#string_contains)
 - [**string_count**](#string_count)
@@ -33,264 +39,398 @@ funções básicas para manipulação de strings. Ela é composta pelas seguinte
 - [**string_to_upper**](#string_to_upper)
 - [**string_array_delete**](#string_array_delete)
 
-# **<a name=string_contains>string_contains</a>**
+# **<a name=string_contains>string_contains</a>**  <h6>[back to indice](#index)</h6>
 
-Esta função verifica se uma string está contida dentro de outra.
+This function checks whether one string is contained in another.
 
-- ## protótipo da função :
+- ## function prototype :
 
 ```c  
-bool string_contains(const char* str,const char* search);
+bool string_contains(const char* str, const char* search);
 ```
-- ## parâmetros :
-  - str `(const char*)` : string de origem.
-  - search `(const char*)` : string para ser verificada se pertence a **str**.
+- ## parameters:
+  - str `(const char*)`: source string.
+  - search `(const char*)`: string to be checked if it belongs to **str**.
   
-- ## retorno:
-  - `(bool)`: retorna `true` se **search** é uma substring de **str**.
+- ## return:
+  - `(bool)`: returns `true` if **search** is a substring of **str**.
 
-# **<a name=string_count>string_count</a>**
-Esta função retorna a quantidade de ocorrências de uma string em outra string.
+- ## example of use
+```c  
+const char str[] = "first string example";
+const char search[] = "string";
+bool contains = string_contains(str, search);/*return true*/
+```
+```c  
+const char str[] = "first string example";
+const char search[] = "two";
+bool contains = string_contains(str, search);/*return false*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_count>string_count</a>**  <h6>[back to indice](#index)</h6>
+This function returns the number of occurrences of a string in another string.
+
+- ## function prototype :  
 
 ```c
-size_t string_count(const char* str,const char* search);
+size_t string_count(const char* str, const char* search);
 ```
    
-- ## parâmetros :
-  - str `(const char*)` : string de origem.
-  - search `(const char*)` : string a ser contada.
+- ## parameters:
+   - str `(const char*)`: source string.
+   - search `(const char*)`: string to be counted.
  
-- ## retorno:
-  - occurences `(size_t)` : retorna o número de ocorrencias de **search** em **str**.
+- ## return:
+   - occurences `(size_t)`: returns the number of occurrences of **search** in **str**.
+- ## example of use:
+```c
+const char str[] = "first string example";
+const char search[] = " ";
+size_t count = string_count(str, search);/*return 2*/
+```
+```c
+const char str[] = "first string example";
+const char search[] = "two";
+size_t count = string_count(str, search);/*return 0*/
+```
+# **<a name=string_ends_with>string_ends_with</a>**  <h6>[back to indice](#index)</h6>
 
-# **<a name=string_ends_with>string_ends_with</a>**
+This function checks whether a string ends with a given string.
 
-Esta função verifica se um string termina com uma determinda string.
-
-- ## protótipo da função :  
+- ## function prototype :  
   
 ```c
-bool string_ends_with(const char* str,const char* end);
+bool string_ends_with(const char* str, const char* end);
 ```
-  
-- ## parâmetros :
-  - str `(const char*)` : string de origem.
-  - end `(const char*)` : string a ser verificada no final de **str**.
 
-- ## retorno:
-  - `(bool)` : retorna se **str** termina com **end**.
+- ## parameters:
+  - str `(const char*)`: source string.
+  - end `(const char*)`: string to be checked at the end of **str**.
 
-# **<a name=string_equals>string_equals</a>**
-Esta função verifica se duas strings são iguais.
+- ## return:
+  - `(bool)`: returns if **str** ends with **end**.
+- ## example of use:
+```c
+const char str[] = "first string example";
+const char search[] = "ple";
+bool is_end = string_ends_with(str, search);/*return true*/
+```
+```c
+const char str[] = "first string example";
+const char search[] = "string";
+bool is_end = string_ends_with(str, search);/*return false*/
+```
+# **<a name=string_equals>string_equals</a>**  <h6>[back to indice](#index)</h6>
+This function checks whether two strings are the same.
 
-- ## protótipo da função :  
+- ## function prototype :  
    
 ```c
-int string_equals(const char* s1,const char* s2,bool ignore_case);
+int string_equals(const char* s1, const char* s2, bool ignore_case);
+```
+- ## parameters:
+  - s1 `(const char*)`: first string.
+  - s2 `(const char*)`: second string.
+  - ignore_case `(bool)`: flag to ignore the case.
+
+- ## Returns:
+  - `(int)`: -1 if **s1** is less than **s2**. 0 if they are equal and 1 if **s1** is greater than **s2**. Case **s1** or **s2** are `NULL`, this function returns -2. If no internal allocation is possible, this function returns -3
+- ## example of use:
+```c
+bool ignore = true;
+const char s1[] = "string";
+const char s2[] = "String";
+bool equals = string_equals(s1, s2, ignore_case);/*return true*/
+```
+```c
+bool ignore = false;
+const char s1[] = "string";
+const char s2[] = "String";
+bool equals = string_equals(s1, s2, ignore_case);/*return false*/
 ```
 
-- ## parâmetros :
-  - s1 `(const char*)` : primeira string.
-  - s2 `(const char*)` : segunda string.
-  - ignore_case `(bool)`: flag para ignorar o caso.
+# **<a name=string_find>string_find</a>**  <h6>[back to indice](#index)</h6>
+This function performs the search for a string.
 
-- ## retorno:
-  - `(int)` : -1 se **s1** é menor que **s2**. 0 se forem iguais e 1 se **s1** for maior que **s2**. caso **s1** 
-ou **s2** sejam `NULL`, esta função retorna -2. Caso não seja possivel realizar alguma alocação interna esta função retorna -3.
-
-# **<a name=string_find>string_find</a>**
-Esta função realiza a busca por uma string.
-
-- ## protótipo da função :  
+- ## function prototype :  
   
 ```c
-int string_find(const char* str,const char* search);
+int string_find(const char* str, const char* search);
 ```
 
-- ## parâmetros :
-  - str `(const char*)` : string de origem.
-  - search `(const char*)` : string a ser buscada.
+- ## parameters:
+  - str `(const char*)`: source string.
+  - search `(const char*)`: string to be searched.
 
-- ## retorno:
-  - `(int)` : retorna o index da primeira ocorrencia da string **search** ou -1 caso não seja encontrada.
+- ## return:
+  - `(int)`: returns the index of the first occurrence of the string **search** or -1 if not found.
 
-# **<a name=string_free>string_free</a>**
-esta função libera a memoria alocada por uma string.
+- ## example of use:
+```c
+const char str[] = "first string example";
+const char search[] = "string";
+int index = string_find(str, search);/*return 5*/
+```
+```c
+const char str[] = "first string example";
+const char search[] = "hello";
+int index = string_find(str, search);/*return -1*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_free>string_free</a>**  <h6>[back to indice](#index)</h6>
+this function frees the memory allocated by a string.
+
+- ## function prototype :  
   
 ```c
 char* string_free(char* str);
 ```
-- ## parâmetros :
-  - str `(const char*)` : string a ser liberada.
+- ## parameters:
+  - str `(const char*)`: string to be released.
 
-- ## retorno:
-  - `(`NULL`)` : libera **str** caso esta não seja `NULL` e retorna `NULL`.
+- ## return:
+  - `(NULL)`: release **str** if it is not `NULL` and return` NULL`.
 
-# **<a name=string_join>string_join</a>**
-Esta função converte um `StringArray` em uma string.
+- ## example of use:
+```c
+str = string_free(str);
+```
 
-- ## protótipo da função :  
+# **<a name=string_join>string_join</a>**  <h6>[back to indice](#index)</h6>
+This function converts a `StringArray` to a string.
+
+- ## function prototype :  
    
 ```c
-char* string_join(StringArray str_array,char* separator);
+char* string_join(StringArray str_array, char* separator);
 ```
 
-- ## parâmetros :
-  - str_array `(StringArray)` : `StringArray` de origem.
-  - separator `(const char*)` : string usada para separar a string resultante da concatenação.
+- ## parameters:
+  - str_array `(StringArray)`: source `StringArray`.
+  - separator `(const char *)`: string used to separate the string resulting from the concatenation.
 
-- ## retorno:
-  - `(char*)` : retorna uma nova string alocada com o resultado da concatenação ou `NULL` caso uma nova string nao possa ser alocada.
+- ## return:
+  - `(char*)`: returns a new string allocated with the result of the concatenation or `NULL` if a new string cannot be allocated.
 
-# **<a name=string_remove>string_remove</a>**
-Esta função remove uma substring de uma string.
+- ## example of use:
+```c
+const char str[] = "first string example";
+StringArray split = string_split(str, " ", 0);
+char* result = string_join(split, " ");/*return "first string example"*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_remove>string_remove</a>**  <h6>[back to indice](#index)</h6>
+This function removes a substring from a string.
+
+- ## function prototype :  
    
 ```c
-char* string_remove(char* str,const char* str_rm,size_t maxremove);
+char* string_remove(char* str, const char* str_rm, size_t maxremove);
 ```
 
-- ## parâmetros :
-  - str `(char*)` : string de origem.
-  - str_rm `(const char*)` : string a ser removida.
-  - maxremove `(size_t)` : quantidade de remoções. use 0 para remover todas as ocorrencias de **str_rm**.
+- ## parameters:
+  - str `(char*)`: source string.
+  - str_rm `(const char*)`: string to be removed.
+  - maxremove `(size_t)`: number of removals. use 0 to remove all occurrences of **str_rm**.
 
-- ## retorno:
-  - `(char)` : retorna uma nova string alocada com a **str_rm** removida ou retorna `NULL` no
-caso de uma das variaveis **str** e **str_rm** sejam `NULL` ou uma nova string nao possa ser alocada.
+- ## returns:
+  - `(char)`: returns a new string allocated with **str_rm** removed or returns `NULL` if one of the variables **str** and **str_rm** is` NULL` or if a new string cannot be allocated.
 
-# **<a name=string_repeat>string_repeat</a>**
-Esta função repete uma string.
+- ## example of use:
+```c
+const char str[] = "first string";
+const char str_rm[] = " string";
+char* new_string = string_remove(str, str_rm, 0);/*return "first"*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_repeat>string_repeat</a>**  <h6>[back to indice](#index)</h6>
+This function repeats a string.
+
+- ## function prototype :  
 
 ```c
-char* string_repeat(char* str,size_t maxrepeat);
+char* string_repeat(char* str, size_t maxrepeat);
+```
+- ## parameters:
+  - str `(char*)`: string to be repeated.
+  - maxrepeat `(size_t)`: number of repetitions of **str**.
+
+- ## return:
+  - `(char*)`: returns to a new string allocated with **str** repeated.
+
+- ## example of use:
+```c
+const char str[] = "banana ";
+char* new_string = string_repeate(str, 3);/*return "banana banana banana "*/
 ```
 
-- ## parâmetros :
-  - str `(char*)` : string a ser repetida.
-  - maxrepeat `(size_t)` : quantidade de repetições de **str**.
+# **<a name=string_replace>string_replace</a>**  <h6>[back to indice](#index)</h6>
+This function performs the substitution of one substring for another.
 
-- ## retorno:
-  - `(char*)` : retorna a uma nova string alocada com **str** repetida.
-
-# **<a name=string_replace>string_replace</a>**
-Esta função que realiza a substituição de uma substring por outra.
-
-- ## protótipo da função :  
+- ## function prototype :  
 
 ```c
-char* string_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
+char* string_replace(char* str, const char* str_rpl, const char* str_new, size_t maxreplace);
 ```
+- ## parameters:
+  - str `(char*)`: source string.
+  - str_rpl `(const char*)`: string to be replaced.
+  - str_new `(const char*)`: new string in place of **str_rm**.
+  - maxreplace `(size_t)`: number of substitutions in **str**. use 0 to make all possible substitutions.
 
-- ## parâmetros :
-  - str `(char*)` : string de origem.
-  - str_rm `(const char*)` : string a ser substituida.
-  - str_new `(const char*)` : nova string no lugar de **str_rm**.
-  - maxreplace `(size_t)` : quantidade de substituições em **str**. use 0 para realizar todas as substituições possiveis.
+- ## Returns:
+  - `(char*)`: returns a new string allocated with the substitutions. If one of the variables **str**, **str_rm** and **str_new** is `NULL` this function returns `NULL`.
 
-- ## retorno:
-  - `(char*)` : retorna a uma nova string alocada com as substituções. 
-caso uma das variaveis **str**,**str_rm** e **str_new** sejam `NULL` esta função retorna `NULL`.
+- ## example of use:
+```c
+const char str[] = "first string example";
+char* result = string_replace(str, " ", "-", 0);/*return "first-string-example"*/
+```
+```c
+const char str[] = "first string example";
+char* result = string_replace(str, "string", "", 0);/*return "first  example"*/
+```
+# **<a name=string_reverse>string_reverse</a>**  <h6>[back to indice](#index)</h6>
+This function inverts a string.
 
-# **<a name=string_reverse>string_reverse</a>**
-Esta função inverte uma string.
-
-- ## protótipo da função :  
+- ## function prototype :  
 
 ```c
 char* string_reverse(char* str);
 ```
 
-- ## parâmetros :
-  - str `(char*)` : string à ser invertida.
+- ## parameters:
+  - str `(char*)`: string to be inverted.
 
-- ## retorno:
-  - `(char*)` : retorna a mesma string invertida.
+- ## returns:
+  - `(char*)`: returns the same inverted string.
 
-# **<a name=string_split>string_split</a>**
-Esta função quebra um string em partes.
+- ## example of use:
+```c
+char str[] = "example";
+string_reverse(str);
+printf(str);/*print "elpmaxe"*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_split>string_split</a>**  <h6>[back to indice](#index)</h6>
+This function divides a string into parts.
+
+- ## function prototype :  
    
 ```c
 StringArray string_split(char* str, const char* sep, size_t maxsplit);
 ```
 
-- ## parâmetros :
-  - str `(char*)` : string de origem.
-  - sep `(const char*)` : string de separação.
-  - maxsplit `(size_t)` : quantidade maxima de quebras. use 0 para realizar todas as quebras possiveis.
+- ## parameters:
+  - str `(char*)`: source string.
+  - sep `(const char*)`: separation string.
+  - maxsplit `(size_t)`: maximum number of divisions. use 0 to make all possible divisions.
 
-- ## retorno:
-  - `(StringArray)` : retorna um **StringArray** contendo todas as quebras.
-- ## nota:
-  Caso **str** ou **sep** sejam `NULL`, string vazia ou não seja possivel alocar espaço para o StringArray e seus dados esta função retorna `NULL`.
+- ## returns:
+  - `(StringArray)`: returns a **StringArray** containing all divisions.
+- ## note:
+  If **str** or **sep** are `NULL`, empty string or it is not possible to allocate space for StringArray and its data, this function returns `NULL`.
 
-# **<a name=string_start_with>string_start_with</a>**
+- ## example of use:
+```c
+size_t index = 0;
+const char str[] = "first string example";
+StringArray split = string_split(str, " ", 0);
 
-Esta função verifica se um string começa com uma determinda string.
+for(index=0; index < split->_size; ++index){/*iterating the StringArray*/
+  printf(split->string[i]); /*print "first", "string", "example"*/
+}
+```
 
-- ## protótipo da função :  
+# **<a name=string_start_with>string_start_with</a>**  <h6>[back to indice](#index)</h6>
+
+This function checks whether a string starts with a given string.
+
+- ## function prototype :  
   
 ```c
-bool string_start_with(const char* str,const char* start);
+bool string_start_with(const char* str, const char* start);
 ```
   
-- ## parâmetros :
-  - str `(const char*)` : string de origem.
-  - start `(const char*)` : string a ser verificada no começo de **str**.
+- ## parameters:
+  - str `(const char*)`: source string.
+  - start `(const char*)`: string to be checked at the beginning of **str**.
 
-- ## retorno:
-  - `(bool)` : retorna se **str** começa com **start**.
+- ## return:
+  - `(bool)`: returns `true` if **str** starts with **start**.
 
-# **<a name=string_to_lower>string_to_lower</a>**
-Esta função converte uma string para minusculas.
+- ## example of use:
+```c
+const char str[] = "first string example";
+const char start[] = "first";
+bool is_start = string_start_with(str, start);/*return true*/
+```
+```c
+const char str[] = "first string example";
+const char start[] = "hello";
+bool is_start = string_start_with(str, start);/*return false*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_to_lower>string_to_lower</a>**  <h6>[back to indice](#index)</h6>
+This function converts a string to lowercase.
+
+- ## function prototype :  
   
 ```c
 char* string_to_lower(char* str);
 ```
 
-- ## parâmetros :
-  - str `(char*)` : string à ser convertida.
+- ## parameters:
+  - str `(char*)`: string to be converted.
 
-- ## retorno:
-  - `(char*)` : retorna a mesma string convertida para minusculas.
+- ## return:
+  - `(char*)`: returns the same string converted to lowercase.
 
-# **<a name=string_to_upper>string_to_upper</a>**
-Esta função converte uma string para maiusculas.
+- ## example of use:
+```c
+char str[] = "EXAMPLE";
+string_to_lower(str);
+printf(str);/*print "example"*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_to_upper>string_to_upper</a>**  <h6>[back to indice](#index)</h6>
+This function converts a string to uppercase.
+
+- ## function prototype :  
 
 ```c
 char* string_to_upper(char* str);
 ```
 
-- ## parâmetros :
-  - str `(char*)` : string à ser convertida.
+- ## parameters:
+  - str `(char*)`: string to be converted.
 
-- ## retorno:
-  - `(char*)` : retorna a mesma string convertida para maiusculas.
+- ## returns:
+  - `(char*)`: returns the same string converted to uppercase.
 
-# **<a name=string_array_delete>string_array_delete</a>**
-Esta função libera a memoria alocado por um **StringArray**.
+- ## example of use:
+```c
+char str[] = "example";
+string_to_upper(str);
+printf(str);/*print "EXAMPLE"*/
+```
 
-- ## protótipo da função :  
+# **<a name=string_array_delete>string_array_delete</a>**  <h6>[back to indice](#index)</h6>
+This function frees the memory allocated by a **StringArray**.
+
+- ## function prototype :  
    
 ```c
 StringArray string_array_delete(StringArray str_array);
 ```
 
-- ## parâmetros :
-  - str_array `(StringArray)` : string array a ser liberado.
+- ## parameters:
+  - str_array `(StringArray)`: string array to be released.
 
-- ## retorno:
-  - `(StringArray)` : retorna **`NULL`**.
+- ## return:
+  - `(StringArray)`: returns ** `NULL` **.
+
+- ## example of use:
+```c
+str_array = string_array_delete(str_array);
+```
