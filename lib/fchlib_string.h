@@ -54,7 +54,7 @@ bool string_contains(const char* str,const char* search);
 bool string_ends_with(const char* str,const char* end);
 bool string_start_with(const char* str,const char* start);
 
-char* string_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace);
+char* string_replace(char* str,const char* str_rpl,const char* str_new,size_t maxreplace);
 char* string_repeat(const char* str,size_t maxrepeat);
 char* string_remove(char* str,const char* str_rm,size_t maxremove);
 char* string_reverse(char* str);

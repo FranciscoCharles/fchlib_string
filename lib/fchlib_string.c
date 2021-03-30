@@ -95,13 +95,13 @@ char* string_remove(char* str,const char* str_rm, size_t maxremove) {
         maxremove = string_count(str,str_rm)+1;
     }
     new_string = (char*)calloc(strlen(str)-len_rm*maxremove+1,1);
-    if(new_string!=NULL) {
+    if(new_string != NULL) {
         while (inter != (char*)NULL && maxremove-->0) {
             strncat(new_string,tmp,(unsigned)(inter-tmp));
             tmp = inter+len_rm;
             inter = strstr(inter+len_rm,str_rm);
         }
-        if(inter!=NULL) {
+        if(inter != NULL) {
             strcat(new_string,tmp);
         }
         if(strlen(new_string)==0) {
@@ -125,7 +125,7 @@ char* string_repeat(const char* str,size_t maxrepeat) {
     }
     return new_string;
 }
-char* string_replace(char* str,const char* str_rm,const char* str_new,size_t maxreplace) {
+char* string_replace(char* str,const char* str_rpl,const char* str_new,size_t maxreplace) {
 
     size_t len_rm = 0;
     size_t size_new = 0;
@@ -140,7 +140,7 @@ char* string_replace(char* str,const char* str_rm,const char* str_new,size_t max
     if (inter != (char*)NULL) {
         size_new = strlen(str)+string_count(str,str_rm)*(strlen(str_new)-strlen(str_rm))+1;
         new_string = (char*)calloc(size_new,1);
-        if(new_string!=NULL) {
+        if(new_string != NULL) {
             if (maxreplace==0) {
                 maxreplace = string_count(str,str_rm);
             }
@@ -156,7 +156,7 @@ char* string_replace(char* str,const char* str_rm,const char* str_new,size_t max
         }
     } else {
         new_string = (char*)calloc(strlen(str)+1,1);
-        if(new_string!=NULL) {
+        if(new_string != NULL) {
             strcpy(new_string,str);
         }
     }
@@ -186,7 +186,7 @@ StringArray string_split(char* str,const char* sep,size_t maxsplit) {
         return (StringArray)NULL;
     }
     len_sep = strlen(sep);
-    str_array = (StringArray)calloc(1,sizeof(struct StringArray));
+    str_array = (StringArray)calloc(1, sizeof(struct StringArray));
     if(str_array != NULL) {
         str_array->strings = (char**)calloc(string_count(str,sep)+1,sizeof(char*));
         if(str_array->strings != NULL) {
@@ -197,7 +197,7 @@ StringArray string_split(char* str,const char* sep,size_t maxsplit) {
             while (inter != NULL && maxsplit-->0) {
                 str_size = inter-tmp;
                 str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
-                if(str_array->strings[str_array->_size]==NULL) {
+                if(str_array->strings[str_array->_size] == NULL) {
                     fail = true;
                     break;
                 }
@@ -208,14 +208,14 @@ StringArray string_split(char* str,const char* sep,size_t maxsplit) {
             if(!fail) {
                 str_size = &str[strlen(str)]-tmp;
                 str_array->strings[str_array->_size] = (char*)calloc(str_size+1,1);
-                if(str_array->strings[str_array->_size]!=NULL) {
-                    strncpy(str_array->strings[(str_array->_size)++],tmp,str_size);
+                if(str_array->strings[str_array->_size] != NULL) {
+                    strncpy(str_array->strings[(str_array->_size)++], tmp,str_size);
                 } else {
                     fail = true;
                 }
             }
         } else {
-            fail=true;
+            fail = true;
         }
         inter = (char*)NULL;
         tmp = (char*)NULL;
@@ -232,7 +232,7 @@ bool string_start_with(const char* str,const char* start) {
     return string_find(str,start)==0;
 }
 char* string_to_lower(char* str) {
-    if(str!=NULL) {
+    if(str != NULL) {
         char* inter = str;
         for (; *inter ; inter++) {
             *inter = (char)tolower(*inter);
@@ -241,7 +241,7 @@ char* string_to_lower(char* str) {
     return str;
 }
 char* string_to_upper(char* str) {
-    if(str!=NULL) {
+    if(str != NULL) {
         char* inter = str;
         for (; *inter ; inter++) {
             *inter = (char)toupper(*inter);
@@ -262,11 +262,10 @@ StringArray string_array_delete(StringArray str_array) {
 }
 char* string_join(StringArray str_array,char* separator) {
     char* new_string = NULL;
-    if(str_array!=NULL) {
+    if(str_array != NULL) {
         unsigned len_string = 0;
-        unsigned i = 0;
-        unsigned size =  str_array->_size;
-        i = size;
+        unsigned size = str_array->_size;
+        unsigned i = size;
         for(; i<size; ++i) {
             len_string += strlen(str_array->strings[i]);
         }
@@ -274,10 +273,10 @@ char* string_join(StringArray str_array,char* separator) {
         if(new_string != NULL) {
             size -= 1;
             for(i=0; i<size; ++i) {
-                strcat(new_string,str_array->strings[i]);
-                strcat(new_string,separator);
+                strcat(new_string, str_array->strings[i]);
+                strcat(new_string, separator);
             }
-            strcat(new_string,str_array->strings[size]);
+            strcat(new_string, str_array->strings[size]);
         }
     }
     return new_string;
