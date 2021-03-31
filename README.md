@@ -5,16 +5,6 @@
 <p align="center">
   Welcome to the <b>README</b> of the <b>fchlib_string</b> library.
 </p>
-
-# Version
-
-- current version:
-  <h5><b>1.0.11032021</b></h5>
-
-- previous versions:
-
-    ~~<h5>1.0.08112020<h5>~~
-
  
 # Description  
 
@@ -38,6 +28,7 @@
 - [**string_to_lower**](#string_to_lower)
 - [**string_to_upper**](#string_to_upper)
 - [**string_array_delete**](#string_array_delete)
+- [**Versions**](#version)
 
 # **<a name=string_contains>string_contains</a>**  <h6>[back to indice](#index)</h6>
 
@@ -434,3 +425,15 @@ StringArray string_array_delete(StringArray str_array);
 ```c
 str_array = string_array_delete(str_array);
 ```
+---
+# **<a name=version>Version</a>**  <h6>[back to indice](#index)</h6>
+
+- current version:
+  <h5><b>1.0.11032021</b></h5>
+
+- previous versions:
+  ~~<h5>1.0.08112020<h5>~~
+---
+<p align="center">
+    Copyright © 2021 <b>FranciscoCharles</b>
+</p>
