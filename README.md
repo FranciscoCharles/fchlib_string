@@ -435,5 +435,5 @@ str_array = string_array_delete(str_array);
   ~~<h5>1.0.08112020<h5>~~
 ---
 <p align="center">
-    Copyright © 2021 <b>FranciscoCharles</b>
+    Copyright © 2020 <b>FranciscoCharles</b>
 </p>
